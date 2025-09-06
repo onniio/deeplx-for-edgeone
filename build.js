@@ -161,5 +161,6 @@ console.log('✅ Created backup entry file: dist/index.js');
 
 console.log('🚀 Build completed successfully!');
 console.log('📋 Files created:');
-console.log('   - index.js (main entry point)');
-console.log('   - dist/index.js (backup)');
+console.log('   - functions/index.js (EdgeOne function)');
+console.log('   - public/index.html (static homepage)');
+console.log('   - index.js (backup entry point)');

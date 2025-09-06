@@ -1,0 +1,10 @@
+{
+  "build": {
+    "command": "npm run build",
+    "output": "public"
+  },
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs18.x"
+  }
+}

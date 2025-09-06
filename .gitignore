@@ -11,7 +11,11 @@ dist/
 # EdgeOne 特定文件
 .edgeone/
 
-# 构建产物 (index.js 需要保留用于 EdgeOne)
+# 构建产物目录
+public/
+functions/
+
+# 根目录的构建文件 (需要保留)
 # index.js
 
 # 包管理器锁文件
