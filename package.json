@@ -1,7 +1,14 @@
 {
+  "name": "deeplx-edgeone",
+  "version": "1.0.0",
+  "description": "DeepL translation API for EdgeOne",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
-    "deploy": "wrangler deploy --minify src/index.ts --outdir dist"
+    "build": "node build.js",
+    "deploy": "wrangler deploy --minify src/index.ts --outdir dist",
+    "start": "node index.js"
   },
   "dependencies": {
     "@ifyour/deeplx": "^0.1.14",
@@ -10,5 +17,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230914.0",
     "wrangler": "^3.14.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

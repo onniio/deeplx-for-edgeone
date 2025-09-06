@@ -1,0 +1,24 @@
+{
+  "entry": "index.js",
+  "build": {
+    "command": "npm run build",
+    "outputDir": "./",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "functions": {
+    "runtime": "nodejs18.x",
+    "memory": 128,
+    "timeout": 30
+  },
+  "environment": {
+    "NODE_ENV": "production"
+  }
+}

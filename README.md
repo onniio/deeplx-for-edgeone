@@ -1,11 +1,40 @@
-Deploy DeepLX on Cloudflare.
+# DeepL Translation API for EdgeOne
 
-## Usage
+Deploy DeepL translation service on Tencent EdgeOne.
 
-<img src="https://images.mingming.dev/file/5c021ad0cd84494272c35.png" width="700">
+## 部署到 EdgeOne
+
+### 1. 准备文件
+
+确保你的项目包含以下文件：
+- `package.json` - 包含构建脚本
+- `build.js` - EdgeOne 构建脚本
+- `index.js` - EdgeOne 入口文件
+- `.edgeonerc` - EdgeOne 配置文件
+
+### 2. 部署步骤
+
+1. 将代码推送到 GitHub 仓库
+2. 在腾讯云 EdgeOne 控制台创建新的 Pages 项目
+3. 连接你的 GitHub 仓库
+4. 配置构建设置：
+   - **构建命令**: `npm run build`
+   - **输出目录**: `./`
+   - **入口文件**: `index.js`
+
+### 3. 环境变量 (可选)
+
+在 EdgeOne 控制台中设置以下环境变量：
+- `NODE_ENV=production`
+
+## 使用方法
+
+部署成功后，你可以通过以下方式使用翻译 API：
+
+### 基本使用
 
 ```bash
-curl --location 'https://deeplx.mingming.dev/translate' \
+curl --location 'https://your-domain.edgeone.app/translate' \
 --header 'Content-Type: application/json' \
 --data '{
     "text": "免费，无限量翻译 API",
@@ -14,24 +43,52 @@ curl --location 'https://deeplx.mingming.dev/translate' \
 }'
 ```
 
-Development
+### 支持的参数
 
+- `text`: 要翻译的文本 (必需)
+- `source_lang`: 源语言代码 (可选，默认为 "auto")
+- `target_lang`: 目标语言代码 (可选，默认为 "en")
+
+### 响应格式
+
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": "Free, unlimited translation API",
+  "source_lang": "zh",
+  "target_lang": "en",
+  "alternatives": ["Free, unlimited translation API"]
+}
 ```
-npm i && npm run dev
+
+## 本地开发
+
+```bash
+# 安装依赖
+npm install
+
+# 本地开发 (使用 Cloudflare Workers)
+npm run dev
+
+# 构建 EdgeOne 版本
+npm run build
 ```
 
-Deploy
+## 技术说明
 
-```
-npm run deploy
-```
+- 使用 Hono 框架提供 Web API
+- 内联了翻译逻辑以避免 EdgeOne 的模块依赖问题
+- 支持 EdgeOne 的 V8 Runtime
+- 兼容 Cloudflare Workers 和 EdgeOne 部署
 
-<details>
+## 故障排除
 
-<summary>Another way to deploy</summary>
+如果部署失败，检查：
+1. `package.json` 中的 `build` 脚本是否存在
+2. `index.js` 文件是否正确生成
+3. EdgeOne 控制台中的构建日志
 
-<img src="https://images.mingming.dev/file/532238359bbb52bc1e4f1.png" width=600>
+## 许可证
 
-Open the [Cloudflare dashboard](https://dash.cloudflare.com/), select `Workers & Pages` -> `Create Application` -> `Create Worker` -> `Deploy` -> `Edit Code`, and paste [/dist/index.js](https://github.com/ifyour/deeplx-for-cloudflare/blob/main/dist/index.js) code, then click `Save and Deploy`.
-
-</details>
+MIT License
