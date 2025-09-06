@@ -4,7 +4,16 @@
     "output": "public"
   },
   "functions": {
-    "source": "functions",
-    "runtime": "nodejs18.x"
-  }
+    "source": "functions"
+  },
+  "routes": [
+    {
+      "src": "/translate",
+      "dest": "/functions/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ]
 }

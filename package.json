@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "DeepL translation API for EdgeOne",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
     "build": "node build.js",
